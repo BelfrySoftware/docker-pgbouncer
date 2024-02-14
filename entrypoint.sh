@@ -56,7 +56,7 @@ if [ -n "$DB_USER" -a -n "$DB_PASSWORD" -a -e "${_AUTH_FILE}" ] && ! grep -q "^\
   echo "\"$DB_USER\" \"$pass\"" >> ${PG_CONFIG_DIR}/userlist.txt  
   # Start fork logic - Belfry
   STAT_DB_USER="datadog"
-  if [-n $STAT_DB_PASSWORD]; then
+  if [ -n "$STAT_DB_PASSWORD" ]; then
     MD5_STAT_PASSWORD="md5$(echo -n "$STAT_DB_PASSWORD$STAT_DB_USER" | md5sum | cut -f 1 -d ' ')"
     echo "\"$STAT_DB_USER\" \"$MD5_STAT_PASSWORD\"" >> ${PG_CONFIG_DIR}/userlist.txt
   fi
